@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Sign Up</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <label>Education:</label>
+    <select name="education" class="form-control">
+        <option value="10th">10th</option>
+        <option value="12th Science">12th Science</option>
+        <option value="B.Sc Physics">B.Sc Physics</option>
+    </select>
+    <label>Interests:</label><br>
+    <input type="checkbox" name="interests" value="Tech"> Tech
+    <input type="checkbox" name="interests" value="Teaching"> Teaching
+    <input type="checkbox" name="interests" value="Research"> Research
+    <button type="submit" class="btn btn-primary mt-2">Sign Up</button>
+</form>
+{% endblock %}

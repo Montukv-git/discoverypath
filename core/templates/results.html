@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Path</h2>
+<h3>Skills</h3>
+<ul>
+    {% for skill, score in skills.items %}
+    <li>{{ skill }}: {{ score }}/10</li>
+    {% endfor %}
+</ul>
+
+<h3>Careers</h3>
+<div class="row">
+    {% for career in careers %}
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ career.name }}</h5>
+                <p class="card-text">{{ career.desc }}</p>
+                <p>Earnings: {{ career.earnings }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<a href="{% url 'download_pdf' %}" class="btn btn-success">Save as PDF</a>
+{% endblock %}

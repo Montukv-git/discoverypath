@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Take the Path Test</h2>
+<form method="post">
+    {% csrf_token %}
+    {% for q in questions %}
+    <div class="mb-3">
+        <label>{{ q.text }}</label><br>
+        {% if q.type == "yesno" %}
+            <input type="radio" name="{{ q.id }}" value="Yes"> Yes
+            <input type="radio" name="{{ q.id }}" value="No"> No
+        {% elif q.type == "choice" %}
+            {% for opt in q.options %}
+            <input type="radio" name="{{ q.id }}" value="{{ opt }}"> {{ opt }}
+            {% endfor %}
+        {% elif q.type == "scale" %}
+            {% for opt in q.options %}
+            <input type="radio" name="{{ q.id }}" value="{{ opt }}"> {{ opt }}
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
